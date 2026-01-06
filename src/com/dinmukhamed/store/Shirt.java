@@ -17,7 +17,7 @@ public class Shirt extends clothingitem{
     }
 
     @Override
-        public void shirtMadeOf(){
+        public void MadeOf(){
             System.out.println(brand + " shirt made of " + material);
     }
     @Override

@@ -22,7 +22,7 @@ public class Pants extends clothingitem{
     }
 
     @Override
-    public void pantsMadeOf(){
+    public void MadeOf(){
         System.out.println("Pants made of " + fabricType);
     }
 

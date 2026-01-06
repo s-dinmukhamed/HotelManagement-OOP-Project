@@ -5,55 +5,52 @@ import java.util.Scanner;
 
 public class Main {
     public static ArrayList<clothingitem> clothingitems = new ArrayList<>();
-    public static ArrayList<customer> customers = new ArrayList<>();
-    public static ArrayList<order> orders = new ArrayList<>();
     private static Scanner scanner = new Scanner(System.in);
+
     public static void main(String[] args) {
-        clothingitems.add(new clothingitem(1, "S", 15500, "Nike", 40));
-        clothingitems.add(new clothingitem(2, "XL", 23000, "Adidas", 24));
-        clothingitems.add(new clothingitem(3, "M", 9990, "Puma", 13));
-
-        customers.add(new customer(1,"Dimash", "Kabanbay Batur 60a/6", "dimash@gmail.com", 400));
-        customers.add(new customer(2, "Miras", "Kabanbay Batyr 60a/13", "miras@gmail.com", 200));
-
-        orders.add(new order(1, 2, 25490, "Dimash", "Kabanbay Batyra 60a/6"));
-
-        //menu loop
-        boolean run = true;
-        while(run){
-            menu();
+        clothingitems.add(new clothingitem(3, "l", 20000, "Puma", 100));
+        clothingitems.add(new Shirt(1, "S", 15500, "Nike", 40, "cotton"));
+        clothingitems.add(new Pants(2, "XL", 23000, "Adidas", 24, "Denim", 77));
+        boolean running = true;
+        while (running) {
+            displayMenu();
             int choice = scanner.nextInt();
             scanner.nextLine();
-                switch (choice){
-                    case 1:
-                        addClothingItem();break;
-                    case 2:
-                        viewAllItems();break;
-                    case 3:
-                        addCostumer();break;
-                    case 4:
-                        viewAllCostumers();break;
-                    case 0:
-                        run = false; break;
-                }
+            switch (choice){
+                case 1: addShirt(); break;
+                case 2: addPants(); break;
+                case 3: viewAll(); break;
+                case 4: viewShirts(); break;
+                case 5: viewPants(); break;
+                case 6: showPolymorph(); break;
+                case 0: running = false; break;
+            }
+
         }
+
+
     }
 
-    public static void menu(){
-        System.out.println("=======================");
-        System.out.println("CLOTHING STORE SYSTEM");
-        System.out.println("=======================");
-        System.out.println("1. Add clothing item ");
-        System.out.println("2. View all items");
-        System.out.println("3. Add costumer");
-        System.out.println("4. View all costumers");
+    private static void displayMenu() {
+        System.out.println("---------------------");
+        System.out.println("Clothing Store System");
+        System.out.println("---------------------");
+        System.out.println("1. Add Shirt");
+        System.out.println("2. Add Pants");
+        System.out.println("3. View all items");
+        System.out.println("4. View only Shirts");
+        System.out.println("5. View only pants");
+        System.out.println("6. Show polymorphism");
         System.out.println("0. Exit");
-        System.out.print("Enter your choice: ");
+        System.out.println("Enter your choice: ");
     }
-    public static void addClothingItem(){
-        System.out.println("\n ---ADD CLOTHING ITEM---");
-        System.out.print("Enter item number: ");
-        int item_id = scanner.nextInt();
+
+    private static void addShirt() {
+        System.out.println("===============");
+        System.out.println("Adding a Shirt");
+        System.out.println("===============");
+        System.out.print("Enter item id: ");
+        int id = scanner.nextInt();
         scanner.nextLine();
 
         System.out.print("Enter size: ");
@@ -70,83 +67,112 @@ public class Main {
         int amount = scanner.nextInt();
         scanner.nextLine();
 
-        System.out.print("Enter type of item: ");
-        String typeOfCloth = scanner.nextLine();
+        System.out.print("Enter a material: ");
+        String material = scanner.nextLine();
 
-        clothingitem item = new clothingitem(item_id, size, price, brand, amount);
-        clothingitems.add(item);
+        clothingitem clothingitem = new Shirt(id, size, price, brand, amount, material);
+        clothingitems.add(clothingitem);
 
-        System.out.println("New item added successfully ");
+        System.out.println("Shirt added successfully");
     }
-    public static void viewAllItems(){
-        System.out.println("\n================");
-        System.out.println(" ALL MENU ITEMS");
-        System.out.println("=================");
-        if(clothingitems.isEmpty()){
-            System.out.println("No clothing items found");
-            return;
-        }
-        System.out.println("Total items: " + clothingitems.size());
-        System.out.println();
 
-        for(int i = 0; i < clothingitems.size(); i++){
-            clothingitem item = clothingitems.get(i);
-            System.out.println(item.getId()+"-"+
-                    item.getBrand());
-
-            System.out.println("Amount: "+item.getAmount());
-            System.out.println("Size: "+item.getSize());
-            System.out.println("Price: "+item.getPrice());
-            System.out.println();
-        }
-    }
-    public static void addCostumer(){
-        System.out.println("===================");
-        System.out.println("---ADD COSTUMER---");
-        System.out.println("===================");
-
-        System.out.print("Enter client id: ");
-        int client_id = scanner.nextInt();
+    private static void addPants() {
+        System.out.println("===============");
+        System.out.println("Adding Pants");
+        System.out.println("===============");
+        System.out.print("Enter item id: ");
+        int id = scanner.nextInt();
         scanner.nextLine();
 
-        System.out.print("Enter client name: ");
-        String name = scanner.nextLine();
+        System.out.print("Enter size: ");
+        String size = scanner.nextLine();
 
-        System.out.print("Enter client address: ");
-        String address = scanner.nextLine();
-
-        System.out.print("Enter client email: ");
-        String email = scanner.nextLine();
-
-        System.out.print("Enter amount of loyalty points: ");
-        double loyaltypoints = scanner.nextDouble();
+        System.out.print("Enter price: ");
+        double price = scanner.nextDouble();
         scanner.nextLine();
 
-        customer client = new customer(client_id, name,address, email, loyaltypoints);
-        customers.add(client);
+        System.out.print("Enter brand name: ");
+        String brand = scanner.nextLine();
 
-        System.out.println("Costumer successfully added");
+        System.out.print("Enter amount of item: ");
+        int amount = scanner.nextInt();
+        scanner.nextLine();
+
+        System.out.print("Enter a fabricType: ");
+        String fabric = scanner.nextLine();
+
+        System.out.print("Enter length: ");
+        int length = scanner.nextInt();
+        scanner.nextLine();
+
+        clothingitem clothingitem = new Pants(id, size, price, brand, amount, fabric, length);
+        clothingitems.add(clothingitem);
+
+        System.out.println("Pants added successfully");
     }
-    public static void viewAllCostumers(){
-        System.out.println("\n================");
-        System.out.println(" ALL COSTUMERS ");
-        System.out.println("=================");
 
-        if(customers.isEmpty()){
-            System.out.println("No costumers found");
+    private static void viewAll() {
+        if (clothingitems.isEmpty()) {
+            System.out.println("No clothing items found.");
             return;
         }
-        System.out.println("Total costumers: "+ customers.size());
+        System.out.println("Total staff: " + clothingitems.size());
         System.out.println();
 
-        for(int i = 0; i < customers.size(); i++){
-            customer client = customers.get(i);
-            System.out.println(client.getClient_id() +" - "+ client.getName());
-            System.out.println("Address: " + client.getAddress());
-            System.out.println("Email: " + client.getEmail());
-            System.out.println("Amount of loyalty points: " + client.getLoyaltyPoints());
-            System.out.println();
+        for (int i = 0; i < clothingitems.size(); i++) {
+            clothingitem s = clothingitems.get(i);
+            System.out.println((i + 1) + ". " + s);
+            if (s instanceof Shirt) {
+                Shirt shirt = (Shirt) s;
+                System.out.println(shirt);
+            } else if (s instanceof Pants) {
+                System.out.println(s);
+            }
+        }
+        System.out.println();
+    }
 
+    private static void viewShirts() {
+        System.out.println("=======");
+        System.out.println("Shirts");
+        System.out.println("=======");
+        int shirts_count = 0;
+        for(clothingitem s : clothingitems){
+            if (s instanceof Shirt){
+                Shirt shirt = (Shirt) s;
+                shirts_count++;
+                System.out.println(shirts_count + ". " + shirt.getBrand());
+                System.out.println("Price: " + shirt.getPrice());
+                System.out.println("Material: " + shirt.getMaterial());
+                System.out.println();
+            }
+        }
+
+    }
+
+    private static void viewPants() {
+        System.out.println("=======");
+        System.out.println("Pants");
+        System.out.println("=======");
+        int pants_count = 0;
+        for(clothingitem s : clothingitems){
+            if (s instanceof Pants){
+                Pants pants = (Pants) s;
+                pants_count++;
+                System.out.println(pants_count + ". " + pants.getBrand());
+                System.out.println("Price: " + pants.getPrice());
+                System.out.println("Fabric type: " + pants.getFabricType());
+                System.out.println();
+            }
+        }
+    }
+    private static void showPolymorph(){
+        System.out.println("==========================");
+        System.out.println("Demonstrating Polymorphism");
+        System.out.println("==========================");
+
+        for(clothingitem s : clothingitems){
+            s.MadeOf();
         }
     }
 }

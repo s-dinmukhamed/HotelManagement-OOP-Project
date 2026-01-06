@@ -76,7 +76,7 @@ public class clothingitem {
         }
     }
     //Overriden
-    public void shirtMadeOf(){
+    public void MadeOf(){
         System.out.print("Shirt");
     }
     public String whatBrand(){
