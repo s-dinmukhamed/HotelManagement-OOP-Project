@@ -7,14 +7,21 @@ public abstract class clothingitem {
     protected double price;
     protected String brand;
     protected int amount;
+    protected String cloth_type;   // Added cloth_type
+    protected String material;     // Added material (specific for Shirt)
+    protected String fabricType;
 
     //Constructor with parameters
-    public clothingitem(int item_id, String size, double price, String brand,  int amount) {
+    public clothingitem(int item_id, String size, double price, String brand,
+                        int amount, String cloth_type, String material, String fabricType) {
         setId(item_id);
         setSize(size);
         setPrice(price);
         setBrand(brand);
         setAmount(amount);
+        setClothType(cloth_type);
+        setMaterial(material);
+        setFabricType(fabricType);
     }
 
     //Getters
@@ -23,6 +30,9 @@ public abstract class clothingitem {
     public double getPrice() {return price;}
     public String getBrand() {return brand;}
     public int getAmount() {return amount;}
+    public String getClothType() { return cloth_type; }
+    public String getMaterial() { return material; }
+    public String getFabricType() { return fabricType; }
 
     //Setters
     public void setId(int item_id) {
@@ -60,6 +70,9 @@ public abstract class clothingitem {
             throw new IllegalArgumentException("Name cannot be empty");
         }
     }
+    public void setClothType(String cloth_type) { this.cloth_type = cloth_type; }
+    public void setMaterial(String material) { this.material = material; }
+    public void setFabricType(String fabricType) { this.fabricType = fabricType; }
 
     //Methods
     public void applDiscount(double Percent){

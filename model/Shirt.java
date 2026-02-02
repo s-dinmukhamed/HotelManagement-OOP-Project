@@ -3,9 +3,8 @@ package model;
 public class Shirt extends clothingitem{
     private String material;
 
-    public Shirt(int item_id, String size, double price, String brand, int amount, String material){
-        super(item_id, size, price, brand, amount);
-        this.material = material;
+    public Shirt(int item_id, String size, double price, String brand, int amount, String material, String cloth_type) {
+        super(item_id, size, price, brand, amount, cloth_type, material, null);  
     }
     public String getMaterial(){
         return material;

@@ -1,5 +1,6 @@
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.util.List;
 
 import database.ClothingitemDAO;
 import menu.Menu;
@@ -9,7 +10,7 @@ import model.clothingitem;
 
 public class Main{
     public static void main(String[] args) {
-        ClothingitemDAO dao = new ClothingitemDAO();
-        dao.getAllItems();
+        Menu menu = new clothingStoreMenu();
+        menu.run();
     }
 }

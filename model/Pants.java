@@ -4,10 +4,8 @@ public class Pants extends clothingitem{
     private String fabricType;
     private int lengthCm;
 
-    public Pants(int item_id, String size, double price, String brand, int amount, String fabricType, int lengthCm){
-        super(item_id, size, price, brand, amount);
-        this.fabricType = fabricType;
-        this.lengthCm = lengthCm;
+    public Pants(int item_id, String size, double price, String brand, int amount, String fabricType, String cloth_type) {
+        super(item_id, size, price, brand, amount, cloth_type, null, fabricType);  // material is null for Pants
     }
 
     public String getFabricType(){
