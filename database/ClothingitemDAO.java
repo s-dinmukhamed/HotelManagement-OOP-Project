@@ -525,5 +525,5 @@ public class ClothingitemDAO {
         }
 
         return null;
-    }
+    }//
 }
